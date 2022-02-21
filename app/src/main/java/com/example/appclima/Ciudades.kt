@@ -17,12 +17,19 @@ class Ciudades : AppCompatActivity() {
 
         val bMexico= findViewById<Button>(R.id.bMexico)
         val bBerlin= findViewById<Button>(R.id.bBerlin)
+        val bFCP= findViewById<Button>(R.id.bFCP)
 
         bMexico.setOnClickListener(View.OnClickListener {
             val intent = Intent(this,MainActivity::class.java)
             intent.putExtra(TAG, "ciudad-mexico")
             startActivity(intent)
         })
+        bFCP.setOnClickListener(View.OnClickListener {
+            val intent = Intent(this,MainActivity::class.java)
+            intent.putExtra(TAG, "ciudad-fcp")
+            startActivity(intent)
+        })
+
 
         bBerlin.setOnClickListener(View.OnClickListener {
             val intent = Intent(this,MainActivity::class.java)
