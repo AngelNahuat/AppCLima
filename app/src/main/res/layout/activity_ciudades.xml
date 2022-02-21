@@ -31,4 +31,12 @@
         android:layout_height="wrap_content"
         android:text="@string/texto_boton_berlin"
         android:textColor="#2B62FF" />
+
+    <Button
+        android:id="@+id/bFCP"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/texto_boton_fcp"
+        android:textColor="#2B62FF" />
 </LinearLayout>

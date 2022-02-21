@@ -10,4 +10,6 @@
 
     <string name="texto_boton_mexico">Clima de la ciudad de mexico</string>
     <string name="texto_boton_berlin">Clima de la ciudad de berlin</string>
+    <string name="texto_boton_fcp">Clima de la ciudad de Felipe Carrillo Puerto</string>
+
 </resources>

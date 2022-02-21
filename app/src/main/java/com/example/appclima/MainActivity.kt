@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
         val ciudad= intent.getStringExtra("com.example.appclima.ciudades.CIUDAD")
 
-
+        val ciudadfcp= Ciudad("Felipe Carrillo Puerto", 39, "Muy soleado")
         val ciudadmx= Ciudad("Ciudad de Mexico", 15, "Soleado")
 
         val ciudadBerlin= Ciudad("Berlin", 30, "Cielo despejado")
@@ -34,7 +34,13 @@ class MainActivity : AppCompatActivity() {
             tvCiudad?.text = ciudadBerlin.nombre
             tvGrados?.text= ciudadBerlin.grados.toString() +"°"
             tvEstatus?.text=ciudadBerlin.estatus
-        }else{
+        }else if(ciudad=="ciudad-fcp"){
+            tvCiudad?.text = ciudadfcp.nombre
+            tvGrados?.text= ciudadfcp.grados.toString() +"°"
+            tvEstatus?.text=ciudadfcp.estatus
+        }
+        else{
+
             Toast.makeText(this, "No se encuentra la informacion ", Toast.LENGTH_SHORT).show()
         }
     }
