@@ -2,8 +2,16 @@ package com.example.appclima
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import com.example.solicitudeshttp.Network
+import com.google.gson.Gson
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -20,28 +28,31 @@ class MainActivity : AppCompatActivity() {
         tvEstatus= findViewById(R.id.tvEstatus)
 
         val ciudad= intent.getStringExtra("com.example.appclima.ciudades.CIUDAD")
+        if(Network.hayRed(this)){
+                SolVolley("http://api.openweathermap.org/data/2.5/weather?id="+ciudad+"&appid=8adbaa8b2520c3778e2c036921f57eb0&units=metric&lang=es")
+            //8adbaa8b2520c3778e2c036921f57eb0
+        }else{
+            Toast.makeText(this, "No hay red", Toast.LENGTH_SHORT).show()
 
-        val ciudadfcp= Ciudad("Felipe Carrillo Puerto", 39, "Muy soleado")
-        val ciudadmx= Ciudad("Ciudad de Mexico", 15, "Soleado")
-
-        val ciudadBerlin= Ciudad("Berlin", 30, "Cielo despejado")
-
-        if(ciudad =="ciudad-mexico"){
-           tvCiudad?.text = ciudadmx.nombre
-            tvGrados?.text= ciudadmx.grados.toString() +"°"
-            tvEstatus?.text=ciudadmx.estatus
-        }else if(ciudad == "ciudad-berlin"){
-            tvCiudad?.text = ciudadBerlin.nombre
-            tvGrados?.text= ciudadBerlin.grados.toString() +"°"
-            tvEstatus?.text=ciudadBerlin.estatus
-        }else if(ciudad=="ciudad-fcp"){
-            tvCiudad?.text = ciudadfcp.nombre
-            tvGrados?.text= ciudadfcp.grados.toString() +"°"
-            tvEstatus?.text=ciudadfcp.estatus
         }
-        else{
+    }
 
-            Toast.makeText(this, "No se encuentra la informacion ", Toast.LENGTH_SHORT).show()
-        }
+    fun SolVolley(url: String) {
+        val cola = Volley.newRequestQueue(this)
+        val solicitud =StringRequest(Request.Method.GET, url, Response.Listener<String>{ response ->
+            try {
+                Log.d("solHTTP", response)
+                val gson= Gson()
+                val ciudad=gson.fromJson(response, Ciudad::class.java)
+                Log.d("GSON",ciudad.name)
+                tvCiudad?.text = ciudad.name
+                tvGrados?.text= ciudad.main?.temp.toString() +"°"
+                tvEstatus?.text=ciudad.weather?.get(0)?.description
+
+            } catch (e: Exception) {
+
+            }
+        }, Response.ErrorListener { })
+        cola.add(solicitud)
     }
 }

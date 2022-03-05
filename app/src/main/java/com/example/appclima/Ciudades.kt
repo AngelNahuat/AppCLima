@@ -21,19 +21,19 @@ class Ciudades : AppCompatActivity() {
 
         bMexico.setOnClickListener(View.OnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra(TAG, "ciudad-mexico")
+            intent.putExtra(TAG, "3530975")
             startActivity(intent)
         })
         bFCP.setOnClickListener(View.OnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra(TAG, "ciudad-fcp")
+            intent.putExtra(TAG, "3527639")
             startActivity(intent)
         })
 
 
         bBerlin.setOnClickListener(View.OnClickListener {
             val intent = Intent(this,MainActivity::class.java)
-            intent.putExtra(TAG, "ciudad-berlin")
+            intent.putExtra(TAG, "2950159")
             startActivity(intent)
         })
     }
