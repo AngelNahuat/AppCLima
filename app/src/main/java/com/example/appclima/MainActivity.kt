@@ -56,3 +56,4 @@ class MainActivity : AppCompatActivity() {
         cola.add(solicitud)
     }
 }
+//conexiones
